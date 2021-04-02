@@ -51,8 +51,8 @@ From Termux
 
 ## Install
 
-```From Windows
-
+From Windows
+```
 > git clone https://github.com/Zitsraaxyz/bot-whatsapp
 > cd bot-whatsapp
 > npm install
