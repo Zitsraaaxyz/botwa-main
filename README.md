@@ -1,9 +1,7 @@
 <p align="center">
 <img src="https://media.giphy.com/media/FeVg8ViEczcxG/giphy.gif" alt="GIF" width="150" height="128"/>
 </p>
-<p align="center">
-<a href="#"><img title="Zitsraa BOT" src="https://img.shields.io/badge/Zitsraa BOT-green?colorA=%23ff0000&colorB=%23017e40&style=for-the-badge"></a>
-</p>
+
 <p align="center">
 <a href="#"><img title="Zitsraa BOT" src="https://img.shields.io/badge/Zitsraa BOT-green?colorA=%23ff0000&colorB=%23017e40&style=for-the-badge"></a>
 </p>
