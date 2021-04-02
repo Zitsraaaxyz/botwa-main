@@ -27,16 +27,16 @@
 
 ## Tools
 
-bash
+```bash
 > Termux
 > WhatsApp
-
+```
 
 ## Install
 
 From Termux
 
-bash
+```bash
 > termux-setup-storage
 (after that tap on permission)
 > apt update -y
@@ -47,17 +47,17 @@ bash
 > cd bot-whatsapp
 > npm install
 > npm start / node index.js
-
+```
 
 ## Install
 
-From Windows
+```From Windows
 
 > git clone https://github.com/Zitsraaxyz/bot-whatsapp
 > cd bot-whatsapp
 > npm install
 > npm start
-
+```
 
 
 
