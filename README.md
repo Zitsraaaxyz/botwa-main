@@ -43,7 +43,7 @@ From Termux
 > apt upgrade -y
 > apt install git -y
 > apt install nodejs
-> git clone https://github.com/Zitsraaxyz/bot-whatsapp
+> git clone https://github.com/Zitsraaxyz/botwa-main
 > cd bot-whatsapp
 > npm install
 > npm start / node index.js
@@ -53,7 +53,7 @@ From Termux
 
 From Windows
 ```
-> git clone https://github.com/Zitsraaxyz/bot-whatsapp
+> git clone https://github.com/Zitsraaxyz/botwa-main
 > cd bot-whatsapp
 > npm install
 > npm start
