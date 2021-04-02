@@ -76,21 +76,23 @@ const { color, bgcolor } = require('./lib/color')
 const { help, kontl, profil, bahasa, ping, donasi, limitend, hanz, limitcount, bangsat, zod, made, bottt } = require('./zitsraa/help')
 const { wait, simih, getBuffer, h2k, generateMessageID, getGroupAdmins, getRandom, banner, start, info, success, close } = require('./lib/functions')
 
+
 const vcard = 'BEGIN:VCARD\n'
             + 'VERSION:3.0\n'
             + 'FN:Zitsraaシ︎\n'
             + 'ORG:Owner Zitsraa;\n'
-            + 'TEL;type=CELL;type=VOICE;waid=6281226770537:+62 831-1800-241\n'
+            + 'TEL;type=CELL;type=VOICE;waid=6281804680327:+62 831-1800-241\n'
             + 'END:VCARD'
 
-prefix = "z"
-name = "𝙕𝙞𝙩𝙨𝙧𝙖𝙖 𝘽𝙊𝙏"
-meymec = "𝙇𝙀𝙑𝙀𝙇𝙄𝙉𝙂"
-rdaftar = "TERIMA KASIH TELAH DAFTAR MENJADI TEMEN HANZ BOT😁"
-rmenu = "𝙕𝙞𝙩𝙨𝙧𝙖𝙖"
+
+prefix = 'z'
+name = 'Zitsraa'
+meymec = 'Level'
+rdaftar = 'TERIMA KASIH TELAH DAFTAR MENJADI TEMEN HANZ BOT😁'
+rmenu = '𝙕𝙞𝙩𝙨𝙧𝙖𝙖'
 zodiak = "𝙂𝙀𝙏 𝙕𝙊𝘿𝙄𝘼𝙆"
 fake = '*Zitsraa BOT*'
-botinfo = "𝙄𝙉𝙁𝙊 𝘽𝙊𝙏︎"
+botinfo = '𝙄𝙉𝙁𝙊 𝘽𝙊𝙏'
 limitt = 9999
 memberLimit = 2
 numbernye = '0'
@@ -312,14 +314,15 @@ Status : 𝙁𝙖𝙡𝙨𝙚 -,-
 	    }
 	})
 
-	Zitsraa.on('chat-update', async (mek) => {
+	Zitsraa.on('message-new', async (mek) => {
 		try {
-			if (!mek.hasNewMessage) return 
-			mek = JSON.parse(JSON.stringify(mek)).messages[0]
-			if (!mek.message) return
-			if (mek.key && mek.key.remoteJid == 'status@broadcast') return
-		if (mek.key.fromMe) return
-			let infoMSG = JSON.parse(fs.readFileSync('./src/.dat/msg.data.json'))
+			if (!publik) {
+			if (!mek.key.fromMe && mek.key.fromMe) return
+		}
+		if (!mek.message) return
+		if (mek.key && mek.key.remoteJid == 'status@broadcast') return
+		let infoMSG = JSON.parse(fs.readFileSync('./src/.dat/msg.data.json'))
+		//	let infoMSG = JSON.parse(fs.readFileSync('./src/.dat/msg.data.json'))
 		infoMSG.push(JSON.parse(JSON.stringify(mek)))
 		fs.writeFileSync('./src/.dat/msg.data.json', JSON.stringify(infoMSG, null, 2))
 		const urutan_pesan = infoMSG.length
@@ -354,29 +357,29 @@ Status : 𝙁𝙖𝙡𝙨𝙚 -,-
 			Zitsraa.chatRead(from)
 			
 
-Zitsraa.on('message-update', async (geps) => {
+Zitsraa.on('message-update', async (hurtz) => {
 	try {
-		const from = geps.key.remoteJid
-		const messageStubType = WA_MESSAGE_STUB_TYPES[geps.messageStubType] || 'MESSAGE'
+		const from = hurtz.key.remoteJid
+		const messageStubType = WA_MESSAGE_STUB_TYPES[hurtz.messageStubType] || 'MESSAGE'
 		const dataRevoke = JSON.parse(fs.readFileSync('./src/gc-revoked.json'))
 		const dataCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked.json'))
 		const dataBanCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked-banlist.json'))
-		let sender = geps.key.fromMe ? Zitsraa.user.jid : geps.key.remoteJid.endsWith('@g.us') ? geps.participant : geps.key.remoteJid
-		const isRevoke = geps.key.remoteJid.endsWith('@s.whatsapp.net') ? true : geps.key.remoteJid.endsWith('@g.us') ? dataRevoke.includes(from) : false
-		const isCtRevoke = geps.key.remoteJid.endsWith('@g.us') ? true : dataCtRevoke.data ? true : false
-		const isBanCtRevoke = geps.key.remoteJid.endsWith('@g.us') ? true : !dataBanCtRevoke.includes(sender) ? true : false
+		const sender = hurtz.key.fromMe ? Zitsraa.user.jid : hurtz.key.remoteJid.endsWith('@g.us') ? hurtz.participant : hurtz.key.remoteJid
+		const isRevoke = hurtz.key.remoteJid.endsWith('@s.whatsapp.net') ? true : hurtz.key.remoteJid.endsWith('@g.us') ? dataRevoke.includes(from) : false
+		const isCtRevoke = hurtz.key.remoteJid.endsWith('@g.us') ? true : dataCtRevoke.data ? true : false
+		const isBanCtRevoke = hurtz.key.remoteJid.endsWith('@g.us') ? true : !dataBanCtRevoke.includes(sender) ? true : false
 		if (messageStubType == 'REVOKE') {
 			console.log(`Status untuk grup : ${!isRevoke}\nStatus semua kontak : ${!isCtRevoke}\nStatus kontak dikecualikan : ${!isBanCtRevoke}`)
 			if (!isRevoke) return
 			if (!isCtRevoke) return
 			if (!isBanCtRevoke) return
-			const from = geps.key.remoteJid
-			const isGroup = geps.key.remoteJid.endsWith('@g.us') ? true : false
+			const from = hurtz.key.remoteJid
+			const isGroup = hurtz.key.remoteJid.endsWith('@g.us') ? true : false
 			let int
 			let infoMSG = JSON.parse(fs.readFileSync('./src/.dat/msg.data.json'))
-			const id_deleted = geps.key.id
-			const conts = geps.key.fromMe ? Zitsraa.user.jid : Zitsraa.contacts[sender] || { notify: jid.replace(/@.+/, '') }
-			const pushname = geps.key.fromMe ? Zitsraa.user.name : conts.notify || conts.vname || conts.name || '-'
+			const id_deleted = hurtz.key.id
+			const conts = hurtz.key.fromMe ? Zitsraa.user.jid : Zitsraa.contacts[sender] || { notify: jid.replace(/@.+/, '') }
+			const pushname = hurtz.key.fromMe ? Zitsraa.user.name : conts.notify || conts.vname || conts.name || '-'
 			const opt4tag = {
 				contextInfo: { mentionedJid: [sender] }
 			}
@@ -397,33 +400,9 @@ Zitsraa.on('message-update', async (geps) => {
 			const body = int.type == 'conversation' ? infoMSG[index].message.conversation : int.type == 'extendedTextMessage' ? infoMSG[index].message.extendedTextMessage.text : int.type == 'imageMessage' ? infoMSG[index].message.imageMessage.caption : int.type == 'stickerMessage' ? 'Sticker' : int.type == 'audioMessage' ? 'Audio' : int.type == 'videoMessage' ? infoMSG[index].videoMessage.caption : infoMSG[index]
 			const mediaData = int.type === 'extendedTextMessage' ? JSON.parse(JSON.stringify(int.data).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo : int.data
 			var itsme = `${numbernye}@s.whatsapp.net`
-			var split = `${fake}`
-			// var taged = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
-			var selepbot72 = {
-				contextInfo: {
-					participant: itsme,
-					quotedMessage: {
-						extendedTextMessage: {
-							text: split,
-						}
-					},
-					mentionedJid: [sender]
-				}
-			}
-			if (int.type == 'conversation' || int.type == 'extendedTextMessage') {
-				const strConversation = `「 *ANTI-DELETE* 」
-
-• Nama: ${pushname2}
-• Number: @${sender.replace('@s.whatsapp.net', '')}
-• Tipe: Text
-• Waktu: ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}
-• Pesan: ${body ? body : '-'}
-`
-				Zitsraa.sendMessage(from, strConversation, MessageType.text, selepbot72)
-			} else if (int.type == 'stickerMessage') {
-				var itsme = `${numbernye}@s.whatsapp.net`
 				var split = `${fake}`
-				const pingbro23 = {
+				// var taged = mek.message.extendedTextMessage.contextInfo.mentionedJid[0]
+				var selepbot72 = {
 					contextInfo: {
 						participant: itsme,
 						quotedMessage: {
@@ -433,15 +412,38 @@ Zitsraa.on('message-update', async (geps) => {
 						}
 					}
 				}
+			if (int.type == 'conversation' || int.type == 'extendedTextMessage') {
+				const strConversation = `		 「 *ANTI-DELETE* 」
+
+- *Nama :* *${pushname}* 
+- *Nomer :* ${sender.replace('@s.whatsapp.net', '')}
+- *Tipe :* Text
+- *Waktu :* *${moment.unix(int.timestamp).format('HH:mm:ss')}*
+- *Tanggal :* *${moment.unix(int.timestamp).format('DD/MM/YYYY')}*
+- *Pesan :* *${body ? body : '-'}*`
+				Zitsraa.sendMessage(from, strConversation, MessageType.text, selepbot72)
+			} else if (int.type == 'stickerMessage') {
+				var itsme = `${numbernye}@s.whatsapp.net`
+					var split = `${fake}`
+					const pingbro23 = {
+						contextInfo: {
+							participant: itsme,
+							quotedMessage: {
+								extendedTextMessage: {
+									text: split,
+								}
+							}
+						}
+					}
 				const filename = `${sender.replace('@s.whatsapp.net', '')}-${moment().unix()}`
 				const savedFilename = await Zitsraa.downloadAndSaveMediaMessage(int.data, `./media/sticker/${filename}`);
-				const strConversation = `「 *ANTI-DELETE* 」
+				const strConversation = `		 「 *ANTI-DELETE* 」
 
-• Nama: ${pushname2}
-• Number: @${sender.replace('@s.whatsapp.net', '')}
-• Tipe: Sticker
-• Waktu: ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}
-`
+- *Nama :* *${pushname}* 
+- *Nomer :* ${sender.replace('@s.whatsapp.net', '')}
+- *Tipe :* *Sticker*
+- *Waktu :* *${moment.unix(int.timestamp).format('HH:mm:ss')}*
+- *Tanggal :* *${moment.unix(int.timestamp).format('DD/MM/YYYY')}*`
 
 				const buff = fs.readFileSync(savedFilename)
 				Zitsraa.sendMessage(from, strConversation, MessageType.text, opt4tag)
@@ -451,28 +453,28 @@ Zitsraa.on('message-update', async (geps) => {
 
 			} else if (int.type == 'imageMessage') {
 				var itsme = `${numbernye}@s.whatsapp.net`
-				var split = `${fake}`
-				const pingbro22 = {
-					contextInfo: {
-						participant: itsme,
-						quotedMessage: {
-							extendedTextMessage: {
-								text: split,
+					var split = `${fake}`
+					const pingbro22 = {
+						contextInfo: {
+							participant: itsme,
+							quotedMessage: {
+								extendedTextMessage: {
+									text: split,
+								}
 							}
 						}
 					}
-				}
 				const filename = `${sender.replace('@s.whatsapp.net', '')}-${moment().unix()}`
-				const savedFilename = await Zitsraa.downloadAndSaveMediaMessage(int.data, `./media/image/${filename}`);
+				const savedFilename = await Zitsraa.downloadAndSaveMediaMessage(int.data, `./media/revoke/${filename}`);
 				const buff = fs.readFileSync(savedFilename)
-				const strConversation = `「 *ANTI-DELETE* 」
+				const strConversation = `	 「 *ANTI-DELETE* 」
 
-• Nama: ${pushname2}
-• Number: @${sender.replace('@s.whatsapp.net', '')}
-• Tipe: Image
-• Waktu: ${moment.unix(int.timestamp).format('HH:mm:ss DD/MM/YYYY')}
-• Pesan: ${body ? body : '-'}\`\`\`
-`
+- *Nama :* *${pushname}* 
+- *Nomer :* ${sender.replace('@s.whatsapp.net', '')}
+- *Tipe :* Image
+- *Waktu :* *${moment.unix(int.timestamp).format('HH:mm:ss')}*
+- *Tanggal :* *${moment.unix(int.timestamp).format('DD/MM/YYYY')}*
+- *Pesan :* ${body ? body : '-'}\`\`\``
 				Zitsraa.sendMessage(from, buff, MessageType.image, { contextInfo: { mentionedJid: [sender] }, caption: strConversation })
 				fs.unlinkSync(savedFilename)
 			}
@@ -482,7 +484,7 @@ Zitsraa.on('message-update', async (geps) => {
 		// console.log(e)
 	}
 })
-            
+
 
 const createSerial = (size) => {
             return crypto.randomBytes(size).toString('hex').slice(0, size)
@@ -518,7 +520,7 @@ ${prefix}verify
 			}
 
 			const botNumber = Zitsraa.user.jid
-			const ownerNumber = ["6281226770537@s.whatsapp.net"] // owner number ubah aja
+			const ownerNumber = ["6281804680327@s.whatsapp.net"] // owner number ubah aja
 			const isGroup = from.endsWith('@g.us')
 
 const q = args.join(' ')
@@ -1145,59 +1147,61 @@ case 'gemuk':
 					    })
 				        break
 					
-	case 'antidelete':
-					const dataRevoke = JSON.parse(fs.readFileSync('./src/gc-revoked.json'))
-					const dataCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked.json'))
-					const dataBanCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked-banlist.json'))
-					const isRevoke = dataRevoke.includes(from)
-					const isCtRevoke = dataCtRevoke.data
-					const isBanCtRevoke = dataBanCtRevoke.includes(sender) ? true : false
-					const argz = body.split(' ')
-					if (argz.length === 1) return fakegroup(`Penggunaan fitur antidelete :\n\n*${prefix}antidelete [aktif/mati]* (Untuk grup)\n*${prefix}antidelete [ctaktif/ctmati]* (untuk semua kontak)\n*${prefix}antidelete banct 628558xxxxxxx* (banlist kontak)`)
-					if (argz[1] == 'aktif') {
-						if (isGroup) {
-							if (isRevoke) return fakegroup(`Antidelete telah diaktifkan di grup ini sebelumnya!`)
-							dataRevoke.push(from)
-							fs.writeFileSync('./src/gc-revoked.json', JSON.stringify(dataRevoke, null, 2))
-							fakegroup(`Antidelete diaktifkan di grup ini!`)
-						} else if (!isGroup) {
-							fakegroup(`Untuk kontak penggunaan *${prefix}antidelete ctaktif*`)
-						}
-					} else if (argz[1] == 'ctaktif') {
-						if (!isGroup) {
-							if (isCtRevoke) return fakegroup(`Antidelete telah diaktifkan di semua kontak sebelumnya!`)
-							dataCtRevoke.data = true
-							fs.writeFileSync('./src/ct-revoked.json', JSON.stringify(dataCtRevoke, null, 2))
-							fakegroup(`Antidelete diaktifkan disemua kontak!`)
-						} else if (isGroup) {
-							fakegroup(`Untuk grup penggunaan *${prefix}antidelete aktif*`)
-						}
-					} else if (argz[1] == 'banct') {
-						if (isBanCtRevoke) return fakegroup(`kontak ini telah ada di database banlist!`)
-						if (argz.length === 2 || argz[2].startsWith('0')) return fakegroup(`Masukan nomer diawali dengan 62! contoh 62859289xxxxx`)
-						dataBanCtRevoke.push(argz[2] + '@s.whatsapp.net')
-						fs.writeFileSync('./src/ct-revoked-banlist.json', JSON.stringify(dataBanCtRevoke, null, 2))
-						fakegroup(`Kontak ${argz[2]} telah dimasukan ke banlist antidelete secara permanen!`)
-					} else if (argz[1] == 'mati') {
-						if (isGroup) {
-							const index = dataRevoke.indexOf(from)
-							dataRevoke.splice(index, 1)
-							fs.writeFileSync('./src/gc-revoked.json', JSON.stringify(dataRevoke, null, 2))
-							fakegroup(`Antidelete dimatikan di grup ini!`)
-						} else if (!isGroup) {
-							fakegroup(`Untuk kontak penggunaan *${prefix}antidelete ctmati*`)
-						}
-					} else if (argz[1] == 'ctmati') {
-						if (!isGroup) {
-							dataCtRevoke.data = false
-							fs.writeFileSync('./src/ct-revoked.json', JSON.stringify(dataCtRevoke, null, 2))
-							fakegroup(`Antidelete dimatikan disemua kontak!`)
-						} else if (isGroup) {
-							fakegroup(`Untuk grup penggunaan *${prefix}antidelete mati*`)
-						}
+					   
+				case 'antidelete':
+				const dataRevoke = JSON.parse(fs.readFileSync('./src/gc-revoked.json'))
+				const dataCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked.json'))
+				const dataBanCtRevoke = JSON.parse(fs.readFileSync('./src/ct-revoked-banlist.json'))
+				const isRevoke = dataRevoke.includes(from)
+				const isCtRevoke = dataCtRevoke.data
+				const isBanCtRevoke = dataBanCtRevoke.includes(sender) ? true : false
+				const argz = body.split(' ')
+				if (argz.length === 1) return Zitsraa.sendMessage(from, `Penggunaan fitur antidelete :\n\n*${prefix}antidelete [aktif/mati]* (Untuk grup)\n*${prefix}antidelete [ctaktif/ctmati]* (untuk semua kontak)\n*${prefix}antidelete banct 628558xxxxxxx* (banlist kontak)`, MessageType.text)
+				if (argz[1] == 'aktif') {
+					if (isGroup) {
+						if (isRevoke) return Zitsraa.sendMessage(from, `Antidelete telah diaktifkan di grup ini sebelumnya!`, MessageType.text)
+						dataRevoke.push(from)
+						fs.writeFileSync('./src/gc-revoked.json', JSON.stringify(dataRevoke, null, 2))
+						Zitsraa.sendMessage(from, `*Succes Enable Antidelete Grup!*`, MessageType.text)
+					} else if (!isGroup) {
+						Zitsraa.sendMessage(from, `Untuk kontak penggunaan *${prefix}antidelete ctaktif*`, MessageType.text)
 					}
-					break
-					
+				} else if (argz[1] == 'ctaktif') {
+					if (!isGroup) {
+						if (isCtRevoke) return Zitsraa.sendMessage(from, `Antidelete telah diaktifkan di semua kontak sebelumnya!`, MessageType.text)
+						dataCtRevoke.data = true
+						fs.writeFileSync('./src/ct-revoked.json', JSON.stringify(dataCtRevoke, null, 2))
+						Zitsraa.sendMessage(from, `Antidelete diaktifkan disemua kontak!`, MessageType.text)
+					} else if (isGroup) {
+						Zitsraa.sendMessage(from, `Untuk grup penggunaan *${prefix}antidelete aktif*`, MessageType.text)
+					}
+				} else if (argz[1] == 'banct') {
+					if (isBanCtRevoke) return Zitsraa.sendMessage(from, `kontak ini telah ada di database banlist!`, MessageType.text)
+					if (argz.length === 2 || argz[2].startsWith('0')) return Zitsraa.sendMessage(from, `Masukan nomer diawali dengan 62! contoh 62859289xxxxx`, MessageType.text)
+					dataBanCtRevoke.push(argz[2] + '@s.whatsapp.net')
+					fs.writeFileSync('./src/ct-revoked-banlist.json', JSON.stringify(dataBanCtRevoke, null, 2))
+					Zitsraa.sendMessage(from, `Kontak ${argz[2]} telah dimasukan ke banlist antidelete secara permanen!`, MessageType.text)
+				} else if (argz[1] == 'mati') {
+					if (isGroup) {
+						const index = dataRevoke.indexOf(from)
+						dataRevoke.splice(index, 1)
+						fs.writeFileSync('./src/gc-revoked.json', JSON.stringify(dataRevoke, null, 2))
+						Zitsraa.sendMessage(from, `*Succes disable Antidelete Grup!*`, MessageType.text)
+					} else if (!isGroup) {
+						Zitsraa.sendMessage(from, `Untuk kontak penggunaan *${prefix}antidelete ctmati*`, MessageType.text)
+					}
+				} else if (argz[1] == 'ctmati') {
+					if (!isGroup) {
+						dataCtRevoke.data = false
+						fs.writeFileSync('./src/ct-revoked.json', JSON.stringify(dataCtRevoke, null, 2))
+						Zitsraa.sendMessage(from, `Antidelete dimatikan disemua kontak!`, MessageType.text)
+					} else if (isGroup) {
+						Zitsraa.sendMessage(from, `Untuk grup penggunaan *${prefix}antidelete mati*`, MessageType.text)
+					}
+				}
+				Zitsraa.sendMessage(from, { quoted : freply})
+
+break
 					
 								case 'fakedeface':
 					var nn = body.slice(12)
@@ -1522,6 +1526,7 @@ case 'groupmenu':
 ┃ ├❏ *${prefix}antidelete*
 ┃ ├❏ *${prefix}welcome*
 ┃ ├❏ *${prefix}grup*
+┃ ├❏ *${prefix}listonline*
 ┃ ├❏ *${prefix}bukatime*
 ┃ ├❏ *${prefix}tutuptime*
 ┃ ├❏ *${prefix}leveling*
@@ -2656,7 +2661,15 @@ case 'babi':
 					mentions(teks, membr, true)
 					break
 					
-					
+					case 'listonline':
+                if (!isGroup) return reply(`Only group`)
+                let ido = args && /\d+\-\d+@g.us/.test(args[0]) ? args[0] : from
+                let online = [...Object.keys(Zitsraa.chats.get(ido).presences), Zitsraa.user.jid]
+                Zitsraa.sendMessage(from, 'List Online:\n' + online.map(v => '- @' + v.replace(/@.+/, '')).join `\n`, text, {
+                    quoted: freply,
+                    contextInfo: { mentionedJid: online }
+                })
+                break
 				case 'animecry':
 				  if (!isPublic) return reply(mess.only.publikG)
 					cry = getRandom('.gif')
@@ -5746,6 +5759,19 @@ Description : ${hmm.result.description}
 					Zitsraa.sendMessage(from, hasil, text, {quoted: freply})
 					await limitAdd(sender)
 					break
+					case 'instastory':
+					try {
+                    if (args.length < 1) return reply('Usernamenya mana kak?')
+				    query = body.slice(12)
+				    reply('[❕] Loading')
+					anu = await fetchJson(`http://lolhuman.herokuapp.com/api/igstory/${query}?apikey=${LolKey}`)
+					buffer = await getBuffer(anu.result[0].url)
+					Zitsraa.sendMessage(from, buffer, video, {mimetype: 'video/mp4', quoted: mek })
+					} catch (e) {
+						console.log(`Error :`, color(e,'red'))
+						reply('Error gan')
+					}
+					break
 case 'igstalk':
                  if (isBanned) return reply(mess.only.benned)    
    					if (!isUser) return reply(mess.only.userB)
@@ -6122,7 +6148,7 @@ break
 						teks += `┣❥   @${mem.jid.split('@')[0]}\n`
 						members_id.push(mem.jid)
 					}
-					mentions(`*From :* @${nom.split("@s.whatsapp.net")[0]}\n*Info :*  ${body.slice(9)} \n\n┏━━━⟪ *INFORMATION* ⟫━━━┓`+teks+'╚═ *「 Zitsraa BOT 」* ', members_id, true)
+					mentions(`*From :* @${nom.split("@s.whatsapp.net")[0]}\n*Info :*  ${body.slice(10)}\n*Total Member :* ${groupMembers.length} \n\n┏━━━⟪ *INFORMATION* ⟫━━━┓`+teks+'╚═ *「 Zitsraa BOT 」* ', members_id, true)
 					break
 
 			 case 'infoall':
