@@ -8,11 +8,13 @@
 <a href="https://github.com/Zitsraaxyz"><img title="Author" src="https://img.shields.io/badge/Author-Zitsraa-blue.svg?style=for-the-badge&logo=github"></a>
 </p>
 <p align="center">
-<a href="https://github.com/Zitsraaaxyz/followers"><img title="Followers" src="https://img.shields.io/github/followers/Zitsraaaxyz?color=blue&style=flat-square"></a>
-<a href="https://github.com/Zitsraaaxyz/megumikato2/stargazers/"><img title="Stars" src="https://img.shields.io/github/stars/Zitsraa/bot-wa?color=red&style=flat-square"></a>
-<a href="https://github.com/Zitsraaxyz/megumikato2/network/members"><img title="Forks" src="https://img.shields.io/github/forks/Zitsraa/bot-wa?color=red&style=flat-square"></a>
-<a href="https://github.com/Zitsraaxyz/megumikato2/watchers"><img title="Watching" src="https://img.shields.io/github/watchers/Zitsraa/bot-wa?label=Watchers&color=blue&style=flat-square"></a>
-</p>
+<a href="https://github.com/Zitsraaxyz?tab=followers"><img title="Followers" src="https://img.shields.io/github/followers/Zitsraaxyz?color=blue&style=flat-square"></a>
+<a href="https://github.com/Zitsraaxyz/botwa-main/stargazers/"><img title="Stars" src="https://img.shields.io/github/stars/Zitsraaxyz/wa-bot?color=blue&style=flat-square"></a>
+<a href="https://github.com/Zitsraaxyz/botwa-main/network/members"><img title="Forks" src="https://img.shields.io/github/forks/Zitsraaxyz/botwa-main?color=blue&style=flat-square"></a>
+<a href="https://github.com/Zitsraaxyz/botwa-main/watchers"><img title="Watching" src="https://img.shields.io/github/watchers/Urbaeexyz/botwa-main?label=Watchers&color=blue&style=flat-square"></a>
+<img src="https://img.shields.io/node/v/@open-wa/wa-automate.svg?color=blue" />
+<a href="https://www.npmjs.com/package/@open-wa/wa-automate"><img src="https://img.shields.io/npm/v/@open-wa/wa-automate.svg?color=blue" /></a>
+<a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FUrbaeexyz%2Fwa-bot&count_bg=%23476FFF&title_bg=%23868080&icon=openbadges.svg&icon_color=%23E7E7E7&title=visitors&edge_flat=false"/></a>
 <p align='center'>
    <a href="https://instagram.com/__zitsraa"><img height="30" src="https://github.com/TobyG74/TobyG74/blob/main/instagram.jpg?raw=true"></a>
 </P>
